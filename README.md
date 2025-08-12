@@ -39,9 +39,9 @@ O processo de desenvolvimento será dividido em três etapas:
 
 ## Setup
 
-*   **Linguagem:** Python (detalhes sobre as bibliotecas utilizadas serão adicionados posteriormente)
+*   **Linguagem:** Python 3.12.2
 *   **API:** GitHub GraphQL API
-*   **Ferramentas:**  (A lista de ferramentas específicas será adicionada conforme o desenvolvimento)
+*   **Ferramentas:**  Postman
 
 ## Contributing
 
