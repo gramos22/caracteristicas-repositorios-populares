@@ -1,4 +1,4 @@
-from app.interfaces.cli import run_list_popular_repos
+from app.interfaces.cli import run_cli
 
 if __name__ == "__main__":
-    run_list_popular_repos()
+    run_cli()
