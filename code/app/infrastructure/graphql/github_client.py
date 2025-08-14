@@ -27,7 +27,9 @@ class GitHubGateway:
     def get_popular_repos(self, number_of_repos: int = 10):
         result = self.execute_query(
             LIST_POPULAR_REPOS,
-            variables={"number_of_repos": number_of_repos}
+            variables={
+                "number_of_repos": number_of_repos,
+            }
         )
 
         return result["search"]["edges"]
