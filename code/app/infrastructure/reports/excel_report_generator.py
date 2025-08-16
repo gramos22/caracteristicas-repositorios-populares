@@ -3,6 +3,16 @@ from openpyxl import Workbook
 from app.core.entities.repository import Repository
 from app.core.interfaces.report_generator import ReportGenerator
 
+"""
+Classe responsável por gerar relatórios em formato Excel (.xlsx) a partir de uma lista de repositórios.
+Esta classe implementa a interface ReportGenerator e utiliza a biblioteca openpyxl para criar e salvar arquivos Excel.
+O relatório gerado contém informações relevantes sobre cada repositório, como nome, número de estrelas, URL, datas de criação e atualização, quantidade de releases, linguagem principal, quantidade de pull requests mergeados e percentual de issues fechadas.
+Métodos
+-------
+generate(repos: List[Repository], file_path: str) -> None
+    Gera e salva um arquivo Excel contendo os dados dos repositórios fornecidos no caminho especificado.
+    Cada repositório é representado em uma linha da planilha, com colunas correspondentes aos atributos definidos no cabeçalho.
+"""
 class ExcelReportGenerator(ReportGenerator):
     def generate(self, repos: List[Repository], file_path: str) -> None:
         wb = Workbook()

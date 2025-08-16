@@ -16,6 +16,14 @@ def run_cli():
         print("Saindo...")
 
 def __run_popular_repos():
+    """
+    Executa o fluxo para listar os repositórios populares do GitHub e gerar um relatório em Excel.
+
+    Solicita ao usuário o número de repositórios desejados, gera o relatório utilizando as classes
+    ListPopularRepos, GitHubGateway e ExcelReportGenerator, e salva o arquivo na pasta atual.
+
+    Exibe no console o caminho do arquivo gerado.
+    """
     number_of_repos = int(input("Digite o número de repositórios: "))
     file_path = os.path.join(os.getcwd(), "repos_populares.xlsx")
     use_case = ListPopularRepos(GitHubGateway(), ExcelReportGenerator())

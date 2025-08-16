@@ -9,7 +9,15 @@ class ListPopularRepos:
         self.report_generator = report_generator
 
     def execute(self, number_of_repos: int, file_path: str) -> None:
+        """
+        Executa o caso de uso para listar os repositórios populares.
+        Busca os repositórios populares do GitHub, de acordo com o número solicitado, e gera um relatório no caminho de arquivo especificado.
+        Caso o número solicitado exceda o limite do batch, delega o processamento para o método interno de tratamento de limite.
 
+        Parâmetros:
+            number_of_repos (int): Quantidade de repositórios populares a serem buscados.
+            file_path (str): Caminho do arquivo onde o relatório será salvo.
+        """
         repos = []
 
         if number_of_repos > self.BATCH_SIZE:
@@ -37,6 +45,14 @@ class ListPopularRepos:
         self.report_generator.generate(repos, file_path)
 
     def __handle_overlimit(self, number_of_repos: int, file_path: str) -> None:
+        """
+        Manipula a busca de repositórios quando o número solicitado excede o tamanho máximo do batch.
+        Realiza múltiplas requisições em batches até atingir o número total de repositórios desejado e gera o relatório correspondente.
+
+        Parâmetros:
+            number_of_repos (int): Quantidade total de repositórios a serem buscados.
+            file_path (str): Caminho do arquivo onde o relatório será salvo.
+        """
         repos = []
         remaining_repos = number_of_repos
 
@@ -67,6 +83,16 @@ class ListPopularRepos:
         self.report_generator.generate(repos, file_path)
 
     def __calc_number_of_repos(self, remaining_repos: int) -> int:
+        """
+        Calcula o número de repositórios a serem buscados no próximo batch.
+        Retorna o tamanho do batch ou o número restante de repositórios, caso seja menor que o batch.
+
+        Parâmetros:
+            remaining_repos (int): Quantidade restante de repositórios a serem buscados.
+            
+        Retorna:
+            int: Quantidade de repositórios a serem buscados no próximo batch.
+        """
         if remaining_repos < self.BATCH_SIZE:
             return remaining_repos
         return self.BATCH_SIZE
