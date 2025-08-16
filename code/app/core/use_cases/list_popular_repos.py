@@ -61,6 +61,8 @@ class ListPopularRepos:
                     total_issues=node["totalIssues"]["totalCount"],
                     closed_issues_percentage=0.0
                 ))
+            
+            remaining_repos -= number_of_repos
 
         self.report_generator.generate(repos, file_path)
 
