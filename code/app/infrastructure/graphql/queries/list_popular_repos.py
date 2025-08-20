@@ -1,7 +1,11 @@
 LIST_POPULAR_REPOS = """
-query($number_of_repos: Int) {
-  search(query: "stars:>50000 sort:stars-desc", type: REPOSITORY, first: $number_of_repos) {
+query($number_of_repos: Int, $after: String) {
+  search(query: "stars:>50000 sort:stars-desc", type: REPOSITORY, first: $number_of_repos, after: $after) {
     repositoryCount
+    pageInfo {
+      endCursor
+      hasNextPage
+    }
     edges {
       node {
         ... on Repository {

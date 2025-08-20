@@ -24,7 +24,9 @@ class ListPopularRepos:
             self.__handle_overlimit(number_of_repos, file_path)
             return
 
-        edges = self.github_gateway.get_popular_repos(number_of_repos)
+        result = self.github_gateway.get_popular_repos(number_of_repos)
+
+        edges = result["edges"]
 
         for edge in edges:
             node = edge["node"]
@@ -54,13 +56,16 @@ class ListPopularRepos:
             file_path (str): Caminho do arquivo onde o relatório será salvo.
         """
         repos = []
+        has_next_page = True
+        after = None
         remaining_repos = number_of_repos
 
-        while remaining_repos > 0:
+        while has_next_page and remaining_repos > 0:
 
-            number_of_repos = self.__calc_number_of_repos(number_of_repos)
+            number_of_repos = self.__calc_number_of_repos(remaining_repos)
 
-            edges = self.github_gateway.get_popular_repos(number_of_repos)
+            result = self.github_gateway.get_popular_repos(number_of_repos, after)
+            edges = result["edges"]
 
             for edge in edges:
                 node = edge["node"]
@@ -77,7 +82,10 @@ class ListPopularRepos:
                     total_issues=node["totalIssues"]["totalCount"],
                     closed_issues_percentage=0.0
                 ))
-            
+
+            after = result["pageInfo"]["endCursor"]
+            has_next_page = result["pageInfo"]["hasNextPage"]
+
             remaining_repos -= number_of_repos
 
         self.report_generator.generate(repos, file_path)

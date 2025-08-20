@@ -24,12 +24,13 @@ class GitHubGateway:
         
         return data['data']
     
-    def get_popular_repos(self, number_of_repos: int = 10):
+    def get_popular_repos(self, number_of_repos: int = 10, after: str = None):
         result = self.execute_query(
             LIST_POPULAR_REPOS,
             variables={
                 "number_of_repos": number_of_repos,
+                "after": after
             }
         )
 
-        return result["search"]["edges"]
+        return result["search"]
