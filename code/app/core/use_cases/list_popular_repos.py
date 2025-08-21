@@ -1,8 +1,9 @@
+from time import sleep
 from app.core.entities.repository import Repository
 from app.core.interfaces.report_generator import ReportGenerator
 
 class ListPopularRepos:
-    BATCH_SIZE = 25
+    BATCH_SIZE = 10
 
     def __init__(self, github_gateway, report_generator: ReportGenerator):
         self.github_gateway = github_gateway
@@ -87,6 +88,8 @@ class ListPopularRepos:
             has_next_page = result["pageInfo"]["hasNextPage"]
 
             remaining_repos -= number_of_repos
+
+            sleep(3)
 
         self.report_generator.generate(repos, file_path)
 

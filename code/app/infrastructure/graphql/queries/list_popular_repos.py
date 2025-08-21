@@ -1,6 +1,6 @@
 LIST_POPULAR_REPOS = """
 query($number_of_repos: Int, $after: String) {
-  search(query: "stars:>50000 sort:stars-desc", type: REPOSITORY, first: $number_of_repos, after: $after) {
+  search(query: "stars:>1 sort:stars-desc", type: REPOSITORY, first: $number_of_repos, after: $after) {
     repositoryCount
     pageInfo {
       endCursor
