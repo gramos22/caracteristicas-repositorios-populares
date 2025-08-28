@@ -35,7 +35,13 @@ O processo de desenvolvimento será dividido em três etapas:
 
 1.  [**Lab01S01:** Consulta GraphQL para 100 repositórios e requisição automática de dados.](https://github.com/gramos22/caracteristicas-repositorios-populares/releases/tag/1.0)
 2.  [**Lab01S02:** Paginação para consultar 1000 repositórios, armazenamento dos dados em arquivo .csv e definição das hipóteses iniciais.](https://github.com/gramos22/caracteristicas-repositorios-populares/releases/tag/2.0)
-3.  **Lab01S03:** Análise e visualização dos dados, elaboração do relatório final.
+3.  [**Lab01S03:** Análise e visualização dos dados, elaboração do relatório final.](https://github.com/gramos22/caracteristicas-repositorios-populares/releases/tag/3.0)
+
+## Relatório Final
+
+O resultado completo deste estudo está consolidado no relatório final, que detalha a metodologia, apresenta os resultados e discute os achados em comparação com as hipóteses iniciais e a literatura acadêmica.
+
+**[Relatório Final](docs/Relatorio_Final.pdf)**
 
 ## Setup
 
